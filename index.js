@@ -1,10 +1,11 @@
-var inquirer = require("inquirer");
-var fs = require('fs');
+const inquirer = require("inquirer");
+const axios = require("axios");
+const fs = require('fs');
 
 const questions = [
     {
         type: "input",
-        name: "name",
+        name: "username",
         message: "Enter your Github username now: "
     },
     {
@@ -21,11 +22,7 @@ const questions = [
 ];
 
 function writeToFile(fileName, data) {
-    let queryURL = `https://api.github.com/users/${data.name}`
-    $.get(queryURL).then(response => {
-        console.log(fileName);
-        console.log(`Name: ${response.name} Profile Image: ${response.avatar_url} Location: ${response.location} GitHub Profile: ${response.html_url} Blog: ${response.blog} Bio: ${response.bio} Public Repos: ${response.public_repos} Followers: ${response.followers} `);
-    }) 
+
 
 }
 
@@ -34,4 +31,11 @@ function init() {
 }
 
 // init();
-inquirer.prompt(questions).then(writeToFile("GitHub User", data));
+inquirer.prompt(questions).then(function(data) {
+    let queryURL = `https://api.github.com/users/${data.username}`;
+    console.log(queryURL);
+    axios
+    .get(queryURL).then(response => {
+        console.log(`Name: ${response.data.name} Profile Image: ${response.data.avatar_url} Location: ${response.data.location} GitHub Profile: ${response.data.html_url} Blog: ${response.data.blog} Bio: ${response.data.bio} Public Repos: ${response.data.public_repos} Followers: ${response.data.followers} `);
+    }) 
+});
