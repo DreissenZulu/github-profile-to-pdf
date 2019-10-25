@@ -1,5 +1,7 @@
+const genHTML = require("./generateHTML");
 const inquirer = require("inquirer");
 const axios = require("axios");
+const PDFDoctument = require('phantom-html2pdf');
 const fs = require('fs');
 
 const questions = [
@@ -27,15 +29,14 @@ function writeToFile(fileName, data) {
 }
 
 function init() {
-    inquirer.prompt(questions).then(writeToFile(questions.name, data));
+    inquirer.prompt(questions).then(function(data) {
+        let queryURL = `https://api.github.com/users/${data.username}`;
+        console.log(queryURL);
+        axios
+        .get(queryURL).then(response => {
+            console.log(`Name: ${response.data.name} Profile Image: ${response.data.avatar_url} Location: ${response.data.location} GitHub Profile: ${response.data.html_url} Blog: ${response.data.blog} Bio: ${response.data.bio} Public Repos: ${response.data.public_repos} Followers: ${response.data.followers} `);
+        }) 
+    });
 }
 
-// init();
-inquirer.prompt(questions).then(function(data) {
-    let queryURL = `https://api.github.com/users/${data.username}`;
-    console.log(queryURL);
-    axios
-    .get(queryURL).then(response => {
-        console.log(`Name: ${response.data.name} Profile Image: ${response.data.avatar_url} Location: ${response.data.location} GitHub Profile: ${response.data.html_url} Blog: ${response.data.blog} Bio: ${response.data.bio} Public Repos: ${response.data.public_repos} Followers: ${response.data.followers} `);
-    }) 
-});
+init();
