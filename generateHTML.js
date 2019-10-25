@@ -170,5 +170,11 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
+      </style>
+    </head>
+  <body>
+  </body>
+</html>`
 }
+
+module.exports = {generateHTML, colors}
