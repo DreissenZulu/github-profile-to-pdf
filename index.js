@@ -31,14 +31,13 @@ function writeToFile(fileName, data) {
 }
 
 function init() {
-    inquirer.prompt(questions).then(function(data) {
-        // let queryURL = `https://api.github.com/users/${data.username}`;
-        // console.log(queryURL);
-        // axios
-        // .get(queryURL).then(response => {
-        //     console.log(`Name: ${response.data.name} Profile Image: ${response.data.avatar_url} Location: ${response.data.location} GitHub Profile: ${response.data.html_url} Blog: ${response.data.blog} Bio: ${response.data.bio} Public Repos: ${response.data.public_repos} Followers: ${response.data.followers} `);
-        // }) 
-        writeToFile(`${data.username}.html`, data);
+    inquirer.prompt(questions).then(function(userInfo) {
+        let queryURL = `https://api.github.com/users/${userInfo.username}`;
+        axios
+        .get(queryURL).then(response => {
+            console.log(`Name: ${response.data.name} Profile Image: ${response.data.avatar_url} Location: ${response.data.location} GitHub Profile: ${response.data.html_url} Blog: ${response.data.blog} Bio: ${response.data.bio} Public Repos: ${response.data.public_repos} Followers: ${response.data.followers} `);
+        }) 
+        writeToFile(`htmlProfile.html`, data);
     });
 }
 
