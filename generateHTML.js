@@ -202,6 +202,7 @@ function generateHTML(data) {
       <div class="row">
         <div class="col card">
           <h4>GitHub Stars</h4>
+          <h4>${data.starred}</h4>
         </div>
         <div class="col card">
           <h4>Following</h4>
