@@ -3,7 +3,7 @@ const colors = {
     wrapperBackground: "#E6E1C3",
     headerBackground: "#C1C72C",
     headerColor: "black",
-    photoBorderColor: "#black"
+    photoBorderColor: "black"
   },
   blue: {
     wrapperBackground: "#5F64D3",
@@ -173,8 +173,28 @@ function generateHTML(data) {
       </style>
     </head>
   <body>
+  <main class="wrapper">
+  <div class="container photo-header">
+    <img src="${data.avatar_url}">
+    <h1>Hi!</h1>
+    <h1>My name is ${data.name} </h1>
+    <h2>Currently at ${data.company}</h2>
+    <h3 class="links-nav">
+      <a href="https://www.google.com/maps/place/${data.location}" class="fas fa-map-marker-alt nav-link"> ${data.location} </a>
+      <a href="${data.blog}" class="fab fa-github nav-link"> GitHub</a>
+      <a href="#" class="fas fa-rss nav-link"> Blog</a>
+    </h3>
+    
+    Public Repos: ${data.public_repos} 
+    Followers: ${data.followers}
+  </div>
+  <div class="container">
+    Bio: ${data.bio} 
+  </div>
+
+</main>  
   </body>
 </html>`
 }
 
-module.exports = {generateHTML, colors}
+module.exports = { generateHTML, colors }
