@@ -47,8 +47,6 @@ function generateHTML(data) {
          html, body {
          padding: 0;
          margin: 0;
-         }
-         html, body, .wrapper {
          height: 100%;
          }
          .wrapper {
@@ -143,7 +141,6 @@ function generateHTML(data) {
            flex-wrap: wrap;
            justify-content: space-between;
            margin-top: 20px;
-           margin-bottom: 20px;
          }
 
          .card {
@@ -173,26 +170,43 @@ function generateHTML(data) {
       </style>
     </head>
   <body>
-  <main class="wrapper">
-  <div class="container photo-header">
-    <img src="${data.avatar_url}">
-    <h1>Hi!</h1>
-    <h1>My name is ${data.name} </h1>
-    <h2>Currently at ${data.company}</h2>
-    <h3 class="links-nav">
-      <a href="https://www.google.com/maps/place/${data.location}" class="fas fa-map-marker-alt nav-link"> ${data.location} </a>
-      <a href="${data.blog}" class="fab fa-github nav-link"> GitHub</a>
-      <a href="#" class="fas fa-rss nav-link"> Blog</a>
-    </h3>
-    
-    Public Repos: ${data.public_repos} 
-    Followers: ${data.followers}
-  </div>
-  <div class="container">
-    Bio: ${data.bio} 
+    <div class="wrapper">
+    <section class="photo-header">
+      <img src="${data.avatar_url}">
+      <h1>Hi!</h1>
+      <h1>My name is ${data.name}</h1>
+      <h4>Currently at ${data.company}</h4>
+      <h3 class="links-nav">
+        <a href="https://www.google.com/maps/place/${data.location}" class="fas fa-map-marker-alt nav-link">${data.location}</a>
+        <a href="${data.html_url}" class="fab fa-github nav-link"> GitHub</a>
+        <a href="${data.blog}" class="fas fa-rss nav-link"> Blog</a>
+      </h3>
+    </section>
   </div>
 
-</main>  
+  <main>
+    <h3 class="container" style="text-align: center; padding-bottom: 0;">${data.bio}</h3>
+    <section class="container" style="padding-top: 0;">
+      <div class="row">
+        <div class="col card">
+          <h4>Public Repositories</h4>
+          <h4>${data.public_repos}</h4>
+        </div>
+        <div class="col card">
+          <h4>Followers</h4>
+          <h4>${data.followers}</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col card">
+          <h4>GitHub Stars</h4>
+        </div>
+        <div class="col card">
+          <h4>Following</h4>
+        </div>
+      </div>
+    </section>
+  </main>
   </body>
 </html>`
 }
