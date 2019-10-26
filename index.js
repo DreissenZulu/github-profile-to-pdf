@@ -51,9 +51,9 @@ function init() {
                     .get(queryURL).then(response => {
                         Object.assign(userInfo, response.data);
                         writeToFile(`${userInfo.username}Profile.pdf`, userInfo);
-                    }, e => {
-                        console.log(`The file could not be generated. Reason: user does not exist.`);
                     })
+            }, e => {
+                console.log(`The file could not be generated. Reason: user does not exist.`);
             })
     });
 }
