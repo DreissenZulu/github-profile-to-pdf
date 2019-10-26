@@ -50,7 +50,3 @@ function init() {
 }
 
 init();
-
-// var thisThing = [{color: "red"}, {name: "Ayo"}];
-
-// writeToFile("index.html", thisThing);
