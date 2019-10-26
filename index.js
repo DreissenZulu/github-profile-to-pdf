@@ -3,6 +3,7 @@ const inquirer = require("inquirer");
 const axios = require("axios");
 const PDFDoctument = require('html-pdf');
 const fs = require('fs');
+var options = { format: 'Letter' };
 
 const questions = [
     {
@@ -24,9 +25,14 @@ const questions = [
 ];
 
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, genHTML.generateHTML(data), function(err) {
+    fs.writeFile("profile.html", genHTML.generateHTML(data), function(err) {
         if (err) throw err;
-        console.log("Successfully saved!");
+        console.log("HTML page generated!");
+        let html = fs.readFileSync('./profile.html', 'utf8');
+        PDFDoctument.create(html, options).toFile(fileName, function(err) {
+            if (err) return console.log(err);
+            console.log(`PDF document generated as ${fileName}`);
+          });
     })
 }
 
@@ -36,7 +42,7 @@ function init() {
         axios
         .get(queryURL).then(response => {
             Object.assign(userInfo, response.data);
-            writeToFile(`${userInfo.username}Profile.html`, userInfo);
+            writeToFile(`${userInfo.username}Profile.pdf`, userInfo);
         }, e => {
             console.log(`The file could not be generated. Reason: user does not exist.`);
         })
