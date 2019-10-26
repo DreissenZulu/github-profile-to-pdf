@@ -40,21 +40,19 @@ function init() {
     inquirer.prompt(questions).then(function (userInfo) {
         // Assign stars
         let queryURL = `https://api.github.com/users/${userInfo.username}/starred?per_page=10000`;
-        axios
-            .get(queryURL).then(response => {
-                let starred = { starred: Object.keys(response.data).length };
-                Object.assign(userInfo, starred);
-                
-                // Assign remaining info
-                let queryURL = `https://api.github.com/users/${userInfo.username}`;
-                axios
-                    .get(queryURL).then(response => {
-                        Object.assign(userInfo, response.data);
-                        writeToFile(`${userInfo.username}Profile.pdf`, userInfo);
-                    })
-            }, e => {
-                console.log(`The file could not be generated. Reason: user does not exist.`);
+        axios.get(queryURL).then(response => {
+            let starred = { starred: Object.keys(response.data).length };
+            Object.assign(userInfo, starred);
+
+            // Assign remaining info
+            let queryURL = `https://api.github.com/users/${userInfo.username}`;
+            axios.get(queryURL).then(response => {
+                Object.assign(userInfo, response.data);
+                writeToFile(`${userInfo.username}Profile.pdf`, userInfo);
             })
+        }, e => {
+            console.log(`The file could not be generated. Reason: user does not exist.`);
+        })
     });
 }
 
