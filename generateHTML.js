@@ -107,7 +107,7 @@ function generateHTML(data) {
          border: 6px solid ${colors[data.color].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
-         .photo-header h1, .photo-header h2 {
+         .photo-header h1, .photo-header h2, .photo-header h4 {
          width: 100%;
          text-align: center;
          }
@@ -172,7 +172,9 @@ function generateHTML(data) {
   <body>
   <div class="wrapper">
     <section class="photo-header">
-      <img src="${data.avatar_url}">
+      <p style="text-align: center;">  
+        <img src="${data.avatar_url}">
+      </p>
       <h1>Hi!</h1>
       <h1>My name is ${data.name}</h1>
       <h4>Currently at ${data.company}</h4>
