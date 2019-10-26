@@ -35,9 +35,11 @@ function init() {
         let queryURL = `https://api.github.com/users/${userInfo.username}`;
         axios
         .get(queryURL).then(response => {
-            console.log(`Name: ${response.data.name} Profile Image: ${response.data.avatar_url} Location: ${response.data.location} GitHub Profile: ${response.data.html_url} Blog: ${response.data.blog} Bio: ${response.data.bio} Public Repos: ${response.data.public_repos} Followers: ${response.data.followers} `);
-        }) 
-        writeToFile(`htmlProfile.html`, data);
+            Object.assign(userInfo, response.data);
+            writeToFile(`${userInfo.username}Profile.html`, userInfo);
+        }, e => {
+            console.log(`The file could not be generated. Reason: user does not exist.`);
+        })
     });
 }
 
