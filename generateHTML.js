@@ -170,16 +170,16 @@ function generateHTML(data) {
       </style>
     </head>
   <body>
-    <div class="wrapper">
+  <div class="wrapper">
     <section class="photo-header">
       <img src="${data.avatar_url}">
       <h1>Hi!</h1>
       <h1>My name is ${data.name}</h1>
       <h4>Currently at ${data.company}</h4>
       <h3 class="links-nav">
-        <a href="https://www.google.com/maps/place/${data.location}" class="fas fa-map-marker-alt nav-link">${data.location}</a>
-        <a href="${data.html_url}" class="fab fa-github nav-link"> GitHub</a>
-        <a href="${data.blog}" class="fas fa-rss nav-link"> Blog</a>
+        <a href="https://www.google.com/maps/place/${data.location}" class="fas fa-map-marker-alt nav-link">  ${data.location}</a>
+        <a href="${data.html_url}" class="fab fa-github nav-link">  GitHub</a>
+        <a href="${data.blog}" class="fas fa-rss nav-link">  Blog</a>
       </h3>
     </section>
   </div>
@@ -203,10 +203,14 @@ function generateHTML(data) {
         </div>
         <div class="col card">
           <h4>Following</h4>
+          <h4>${data.following}</h4>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="wrapper" style="height: auto;">
+  </div>
   </body>
 </html>`
 }
