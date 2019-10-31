@@ -18,3 +18,10 @@ Long story short, most of the challenges with this project involved an unfamilia
 The next major challenge came from formatting the HTML page. Having been given the styling in the skeleton prior to starting, I wanted to use only these styles when creating the layout of the page. In the end, I needed to make minor adjustments to some of the styles in order to replicate the provided example pdf. While learning and understanding the new Node.js commands was difficult, this part of the project was the most headache-inducing.
 
 Despite not having a solution for all use cases, I wanted to implement the user's GitHub stars to the profile. The GitHub API includes a separate call for the user's starred projects, but requires a page limit to be defined or it will only show a subset of their starred repositories. As the API returns an object for its response, I used Object.keys to return the starred repos as an array, then applied .length to get the user's number of starred repos.
+
+## Sample Usage
+![](node_use.gif)
+## HTML Page Sample
+![](html_sample.png)
+## PDF Sample
+![](pdf_sample.png)
